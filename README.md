@@ -121,12 +121,6 @@ A modern JavaScript stack, bringing together a responsive React frontend, a stru
 
 ### 💻 Technology Stack
 
-<p align="center">
-  <img src="https://skillicons.dev/icons?i=react,vite,tailwind,javascript,nodejs,express,mongodb&theme=light" alt="Frontend and backend technologies" />
-  <br/><br/>
-  <img src="https://skillicons.dev/icons?i=vercel,render&theme=light" alt="Deployment technologies" />
-</p>
-
 | Layer | Technology |
 |:---|:---|
 | 🎨 Frontend | React |

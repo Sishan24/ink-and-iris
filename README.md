@@ -1,233 +1,367 @@
-# Ink & Iris
+# ✦ Ink & Iris
 ### A Literary World by Jaya Roy Chowdhury
 
-**Ink & Iris** is the official literary website of **Jaya Roy Chowdhury** — a digital garden of stories, characters, books and ideas, celebrating the art of storytelling and the worlds that live between the pages.
+<p align="center">
+  <em>Where stories take root, and imagination blossoms.</em>
+</p>
 
-Conceived as more than an author website, Ink & Iris brings literature to life through an immersive reading experience, thoughtfully curated character galleries, a personal *Speak to the Author* inbox, passwordless reader accounts and a dedicated administration portal that the author can manage independently.
+A world woven from words, characters, imagination and the timeless art of storytelling.
 
-A meeting of timeless literature and contemporary design, where every story has a place to bloom.
+**Ink & Iris** is the official literary website of **Jaya Roy Chowdhury**, envisioned as an immersive digital home for her literary collection and the readers who discover it.
 
-**The technology behind the experience**
+More than an author portfolio, Ink & Iris brings together an elegant book collection, illustrated character galleries, individual literary profiles, a personal reader-to-author communication space, passwordless reader accounts and a comprehensive author-controlled administration portal.
 
-React + Vite + Tailwind · Node + Express · MongoDB Atlas · Resend · Cloudinary
-
-```text
-ink-and-iris/
-├─ client/   React app (public site, reader account, admin portal)
-└─ server/   Express API (auth, content, messages, uploads)
-```
+Inspired by the warmth of golden afternoons, the richness of literature and the vibrancy of nature, the platform bridges the enduring charm of traditional storytelling with the possibilities of modern web technology.
 
 ---
 
-## Getting Started
+## ✿ The Experience
 
-### Run it locally
+A literary world deserves an experience of its own.
 
-1. Install everything: `npm run install:all`
-2. Copy `server/.env.example` to `server/.env` and fill it in (details below).
-3. Create the admin account and default content: `npm run seed`
+| Destination | Experience |
+|---|---|
+| Home | A welcoming literary introduction, featured books and curated highlights |
+| The Author | An editorial-style biography and author profile |
+| Books | A complete collection with individual book pages |
+| Characters | A visual character gallery with book-based filtering |
+| Speak to the Author | A dedicated reader communication channel |
+| Join / Sign In | Passwordless reader registration and authentication |
+| Reader Dashboard | A personalised space for registered readers |
+| Privacy | Privacy information and policies |
+| Custom 404 | A thoughtfully designed unavailable-page experience |
+| Admin Portal | A private workspace for managing the literary website |
 
-   Use `npm run seed:demo` to also publish placeholder books, characters and quotes so you can explore the complete website experience.
+### A closer look at the details
 
-4. Start both applications: `npm run dev`.
-
-   - Website: [http://localhost:5173](http://localhost:5173)
-   - API: [http://localhost:5000](http://localhost:5000)
-
-### Environment Configuration
-
-Create a `server/.env` file with the following variables:
-
-| Variable | Needed for |
-| --- | --- |
-| `MONGODB_URI` | Atlas connection string (or local MongoDB) |
-| `JWT_SECRET` | Long random string signing sessions |
-| `ADMIN_EMAIL` | The author's email. Signing in with it gives admin access |
-| `RESEND_API_KEY`, `EMAIL_FROM` | Real emails. **Leave the key empty in development**: sign-in codes and notifications print in the server terminal instead |
-| `CLOUDINARY_*` | Image uploads (covers, portraits, author photo). Without them, uploads return a clear "not set up" message |
-
-### Author Access
-
-The author has a dedicated administration space to curate and manage her literary world.
-
-1. Open `/signin`.
-2. Enter the email configured in `ADMIN_EMAIL`.
-3. Enter the six-digit verification code received by email (or printed in the terminal during development).
-4. On successful authentication, you will be redirected to `/admin`.
-
-No conventional password is required.
+- Responsive sticky navigation and mobile menu.
+- Website-wide search.
+- Reading-progress indicators on individual book pages.
+- Interactive, hover-reveal character introductions.
+- Individual SEO titles for every page.
+- Keyboard navigation and visible focus states.
+- Accessible skip-navigation link.
+- Reduced-motion support.
+- Dedicated administration bundle at `/admin`.
 
 ---
 
-## Inside the Literary World
+## ❀ The Author's Atelier
 
-Ink & Iris is designed around the relationship between an author, her stories and the readers who discover them.
+A complete administration portal designed to give the author independent control over her digital literary presence.
 
-### 1. The Public Website
+**Route:** `/admin`
 
-- **Home** — The literary introduction to Ink & Iris, featuring the author's work and selected highlights.
-- **The Author** — An editorial-style author profile and biography.
-- **Books** — A complete literary collection, with a dedicated page for every book.
-- **Characters** — A curated character gallery, with individual profiles and filters by book.
-- **Speak to the Author** — A dedicated communication channel for readers.
-- **Join / Sign In** — Passwordless reader registration and authentication.
-- **Reader Dashboard** — A personalised space for registered readers.
-- **Privacy** — Privacy information and policies.
-- **Custom 404** — A branded page for unavailable destinations.
+The portal includes:
 
-### 2. A Passwordless Reading Community
+| Module | Capabilities |
+|---|---|
+| Overview | Readership growth and administrative insights |
+| Readers | Search readers and suspend accounts |
+| Books | Create, edit and manage book listings |
+| Characters | Manage character profiles, portraits and descriptions |
+| Message Inbox | Read, organise, archive and reply to reader messages by email |
+| Homepage | Edit homepage content and featured sections |
+| Author Profile | Manage biography and author information |
+| Settings | Configure website settings |
 
-Readers can create accounts and sign in using email-based, one-time verification codes.
+Administrator privileges are enforced through server-side role verification. Reader accounts attempting to access protected administrative routes receive a `403` response.
 
-Security specifications:
+---
+
+## ✧ A Passwordless Reading Community
+
+Readers can register and sign in without conventional passwords.
+
+Authentication is handled through email-based, one-time verification codes.
+
+**Security implementation**
 
 - Six-digit verification codes.
-- Codes stored as hashes.
+- Hashed code storage.
 - Ten-minute code expiry.
-- Single-use verification codes.
+- Single-use verification.
 - Maximum five incorrect attempts.
 - Rate limiting per email and IP address.
-- Sessions maintained through httpOnly cookies.
+- httpOnly session cookies.
 - Seven-day reader sessions.
 - One-day administrator sessions.
 
-### 3. The Author's Administration Portal
-
-**Route: `/admin`**
-
-A dedicated, server-protected workspace that allows the author to manage her website without requiring developer assistance for routine content updates.
-
-Features include:
-
-- **Overview:** Readership growth and administrative insights.
-- **Readers:** Search registered readers and suspend accounts.
-- **Books:** Create, edit and manage book listings.
-- **Characters:** Manage character profiles, portraits and descriptions.
-- **Message Inbox:** Organise messages by unread, read, replied and archived status, with email replies.
-- **Homepage Editor:** Update homepage content and featured sections.
-- **Author Profile:** Edit biography and profile information.
-- **Settings:** Manage website configuration.
-
-Administrator permissions are enforced through a server-side `admin` role. Reader accounts attempting to access administrative routes receive a `403` response.
-
-### 4. Bookstore Integration
-
-Amazon purchase links are entered and maintained by the author individually for each book. Optional links to other bookstores are supported.
-
-This ensures that purchase destinations can be updated whenever necessary without modifying the application code.
-
-### 5. Thoughtful Details
-
-The experience includes:
-
-- Sticky navigation and responsive mobile menu.
-- Website-wide search.
-- Reading-progress bar on individual book pages.
-- Hover-reveal character introductions.
-- Individual SEO titles for every page.
-- Accessible skip navigation link.
-- Keyboard focus styling.
-- Reduced-motion support.
-- Responsive layouts across devices.
+The author can access the administration portal using the email configured through `ADMIN_EMAIL`.
 
 ---
 
-## Preparing the Content
+## ❋ Technology & Architecture
 
-### Bringing the Literary World to Life
+Built with a modern JavaScript stack, combining a responsive React frontend with a structured Express API and MongoDB database.
 
-Before the website goes live, the following materials need to be collected and approved by the author.
+| Layer | Technology |
+|---|---|
+| Frontend | React |
+| Build Tool | Vite |
+| Styling | Tailwind CSS |
+| Backend | Node.js |
+| API Framework | Express.js |
+| Database | MongoDB Atlas |
+| Authentication | JWT + httpOnly Cookies |
+| Email Delivery | Resend |
+| Image Management | Cloudinary |
+| Deployment | Vercel + Render |
 
-| Content | Requirements |
-| --- | --- |
-| Author Profile | Approved biography and photograph |
-| Book Collection | Complete book list, cover images and synopses |
-| Bookstore Links | Amazon URLs and optional additional store links |
-| Character Gallery | Character names, portraits and descriptions |
-| Notifications | Email address for website notifications |
-| Social Media | Official Instagram profile link |
-| Branding | Final confirmation of the website name |
+### Project Structure
 
-The seed data includes seven titles identified in public listings, initially saved as unpublished drafts without invented synopses.
+```text
+ink-and-iris/
+│
+├── client/
+│   ├── React + Vite application
+│   ├── Public literary website
+│   ├── Reader authentication
+│   ├── Reader dashboard
+│   └── Admin portal
+│
+├── server/
+│   ├── Express API
+│   ├── Database models
+│   ├── Authentication
+│   ├── Middleware
+│   ├── API routes
+│   ├── Content management
+│   ├── Message handling
+│   ├── Image uploads
+│   └── Seed scripts
+│
+└── README.md
+```
 
-The default biography uses only information from the author's published author bio. Both the biography and book details should be replaced with the author's approved content before publication.
+### Backend Capabilities
+
+- MongoDB-powered content management with six collections.
+- Email-based one-time-code authentication.
+- Server-side role-based access control.
+- Contact-message storage and email notifications.
+- Author-managed book and character content.
+- Cloudinary-powered image uploads.
+- Database seeding for initial administrator and demonstration content.
+
+### Bookstore Integration
+
+Amazon and optional additional bookstore URLs are maintained individually for each book through the administration portal.
+
+This keeps purchase destinations editable without requiring changes to the application code.
 
 ---
 
-## Development Notes
+## ✿ Getting Started
 
-The project intentionally uses JavaScript rather than TypeScript to keep the codebase lightweight and approachable.
+### Prerequisites
 
-CSS transitions are used instead of Framer Motion to minimise dependencies while retaining a polished interface. Both TypeScript and Framer Motion can be introduced later if required.
+- Node.js and npm.
+- MongoDB Atlas account or local MongoDB instance.
+- Resend account for production email delivery.
+- Cloudinary account for production image uploads.
 
-### Current Testing Status
+### 1. Install Dependencies
 
-- API syntax-checked.
-- API smoke-tested for health, authentication guards and validation.
-- Client production build completed successfully.
-- Live MongoDB integration not yet tested.
-- Live Resend email integration not yet tested.
-- Live Cloudinary upload integration not yet tested.
+```bash
+npm run install:all
+```
 
-**Important:** Before production deployment, perform a complete end-to-end test on your local machine, covering reader registration, sign-in, message submission, book management and image uploads.
+### 2. Configure Environment Variables
+
+Copy the example environment file:
+
+```bash
+cp server/.env.example server/.env
+```
+
+Configure the following variables:
+
+| Variable | Purpose |
+|---|---|
+| `MONGODB_URI` | MongoDB connection string |
+| `JWT_SECRET` | Secret used for signing sessions |
+| `ADMIN_EMAIL` | Author's administrator email |
+| `RESEND_API_KEY` | Resend API credentials |
+| `EMAIL_FROM` | Verified email sender |
+| `CLOUDINARY_*` | Cloudinary image-upload credentials |
+
+**Development note:** Leave `RESEND_API_KEY` empty during local development. Verification codes and email notifications are printed in the server terminal instead.
+
+Cloudinary credentials are optional during development. Without them, upload operations return a clear configuration message.
+
+### 3. Initialise the Database
+
+Create the administrator account and default content:
+
+```bash
+npm run seed
+```
+
+To populate the website with demonstration books, characters and quotes:
+
+```bash
+npm run seed:demo
+```
+
+The demonstration content makes it possible to explore the website layout without waiting for the author's final approved literary material.
+
+### 4. Start the Application
+
+```bash
+npm run dev
+```
+
+The applications will be available at:
+
+| Application | Local URL |
+|---|---|
+| Website | http://localhost:5173 |
+| API | http://localhost:5000 |
+| Admin Portal | http://localhost:5173/admin |
+
+### 5. Administrator Sign-In
+
+1. Open `/signin`.
+2. Enter the email configured in `ADMIN_EMAIL`.
+3. Retrieve the six-digit code from the server terminal during development.
+4. Enter the code to authenticate.
+5. Access the administration portal at `/admin`.
 
 ---
 
-## Deployment
+## ❀ Content & Editorial Readiness
 
-### 1. Frontend — Vercel
+The database seed includes seven book titles identified through public research, initially stored as unpublished drafts without fabricated synopses.
 
-Deploy the React application through Vercel.
+The default author biography uses information from her published Google Play author bio.
 
-| Setting | Configuration |
-| --- | --- |
+Before public launch, the following materials require the author's approval:
+
+- Official author biography and photograph.
+- Complete book collection, covers and synopses.
+- Verified Amazon and additional bookstore links.
+- Character names, portraits and descriptions.
+- Notification email address.
+- Official Instagram profile.
+- Final confirmation of website branding.
+
+Rotating literary quotations are designed to appear once the author adds approved quotes.
+
+The platform keeps editorial control with the author: her books, characters, descriptions and featured content can be managed through the administration portal.
+
+---
+
+## ✧ Development Decisions
+
+A few deliberate choices keep the project lightweight and maintainable:
+
+- **JavaScript over TypeScript:** A straightforward JavaScript codebase across the frontend and backend.
+- **CSS transitions over Framer Motion:** Lightweight animations without an additional animation dependency.
+- **Author-managed content:** Bookstore links, character information and literary content remain editable through the admin portal.
+- **Separate admin bundle:** Administrative functionality is loaded separately from the public-facing experience.
+
+TypeScript and Framer Motion can be introduced later without changing the overall architecture.
+
+---
+
+## ❋ Testing & Deployment Readiness
+
+The project has reached the local-build and preliminary API-testing stage.
+
+| Component | Current status |
+|---|---|
+| Project structure | Built |
+| Public website | Implemented |
+| Reader authentication | Implemented |
+| Reader dashboard | Implemented |
+| Admin portal | Implemented |
+| Backend API | Smoke-tested |
+| API health and authentication guards | Tested |
+| API validation | Smoke-tested |
+| Client production build | Successful |
+| Live MongoDB integration | Pending verification |
+| Live Resend integration | Pending verification |
+| Live Cloudinary integration | Pending verification |
+| Production deployment | Pending |
+
+**Before deployment:** Perform a complete local end-to-end test covering reader registration, authentication, message submission, book management and image uploads against the actual service configurations.
+
+The API has been smoke-tested without a live database. A successful client build and API smoke test should not be interpreted as a completed production integration test.
+
+---
+
+## ✿ Deployment
+
+The application is designed for deployment using **Vercel for the frontend** and **Render for the backend**.
+
+### Frontend — Vercel
+
+| Configuration | Value |
+|---|---|
 | Root Directory | `client` |
 | Build Command | `npm run build` |
 | Output Directory | `dist` |
 
-In `client/vercel.json`, replace `YOUR-RENDER-SERVICE.onrender.com` with the actual Render service URL.
+Update `client/vercel.json`:
 
-API requests are proxied through `/api`, allowing the authentication cookie to remain first-party.
+Replace:
 
-### 2. Backend — Render
+```text
+YOUR-RENDER-SERVICE.onrender.com
+```
 
-Deploy the Express application through Render.
+with the actual Render service URL.
 
-| Setting | Configuration |
-| --- | --- |
+The `/api` proxy forwards frontend API requests to the backend. This architecture keeps the authentication cookie first-party across the deployed application.
+
+### Backend — Render
+
+| Configuration | Value |
+|---|---|
 | Root Directory | `server` |
 | Build Command | `npm install` |
 | Start Command | `npm start` |
 
-Configure every variable listed in `.env.example`, including:
+Configure all variables from `.env.example`, including:
 
-- `NODE_ENV=production`
-- `CLIENT_URL` set to the live website address.
-- MongoDB Atlas connection details.
-- JWT secret.
-- Resend API credentials.
-- Cloudinary credentials.
+```env
+NODE_ENV=production
+CLIENT_URL=https://your-live-website.com
+```
+
+Also configure MongoDB, JWT, Resend and Cloudinary credentials.
 
 Verify the sending domain in Resend and configure `EMAIL_FROM`.
 
-### 3. Production Database Setup
+### Production Database Initialisation
 
-Run `npm run seed` once against the production database.
+Run the following once against the production database:
+
+```bash
+npm run seed
+```
 
 Alternatively, signing in with the configured `ADMIN_EMAIL` automatically creates the administrator account on first use.
 
 ---
 
-## The Philosophy
+## ✧ The Thought Behind Ink & Iris
 
-*Every book holds a universe. Every character carries a life of their own. Every reader brings a new interpretation.*
+*Some worlds are built with stone. Others are built with words.*
 
-Ink & Iris is an invitation to step into those universes.
+Ink & Iris is built around the belief that literature deserves more than a catalogue of titles. It deserves a space where stories can be discovered, characters can be remembered, readers can connect and an author's creative universe can continue to grow.
 
-It brings together the enduring elegance of the written word and the possibilities of the digital age — creating a home for stories, their creators and the readers who keep them alive.
+It brings together the warmth of traditional storytelling, the beauty of visual expression and the possibilities of contemporary technology.
 
-**Where stories take root, and imagination blossoms.**
+A little ink, a little imagination, and a world of possibilities.
+
+**Ink & Iris — Where stories take root, and imagination blossoms.**
 
 ---
 
-*Designed and developed with care for the literary world of Jaya Roy Chowdhury.*
+<p align="center">
+  <strong>Conceptualised, designed & developed with care.</strong>
+  <br/>
+  <em>A digital literary home for Jaya Roy Chowdhury.</em>
+</p>

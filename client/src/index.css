@@ -1,0 +1,43 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html { scroll-behavior: smooth; }
+  body { @apply bg-ivory font-sans text-forest antialiased; }
+  h1, h2, h3, h4 { @apply font-serif font-medium leading-tight; }
+  :focus-visible { @apply outline-none ring-2 ring-sage-deep ring-offset-2 ring-offset-ivory; }
+  ::selection { background: #E8DFC9; }
+}
+
+@layer components {
+  .container-page { @apply mx-auto w-full max-w-6xl px-5 sm:px-8; }
+  .section { @apply py-16 sm:py-24; }
+  .btn { @apply inline-flex items-center justify-center gap-2 rounded-full px-6 py-3 text-sm font-medium transition-colors disabled:cursor-not-allowed disabled:opacity-60; }
+  .btn-primary { @apply bg-forest text-ivory hover:bg-forest/90; }
+  .btn-ghost { @apply border border-forest/30 text-forest hover:bg-parchment/60; }
+  .btn-light { @apply bg-ivory text-forest hover:bg-parchment; }
+  .btn-danger { @apply border border-rose-deep/40 text-rose-deep hover:bg-rose/10; }
+  .btn-sm { @apply px-4 py-2 text-xs; }
+  .label { @apply mb-1.5 block text-sm font-medium; }
+  .field { @apply w-full rounded-xl border border-forest/20 bg-white/80 px-4 py-3 text-base text-forest placeholder:text-forest/45 focus:border-sage-deep focus:outline-none focus:ring-2 focus:ring-sage/30; }
+  .hint { @apply mt-1 text-xs text-forest/70; }
+  .error { @apply mt-2 text-sm text-rose-deep; }
+  .card { @apply rounded-2xl border border-parchment bg-white/70 shadow-soft; }
+  .pill { @apply inline-flex items-center rounded-full border border-parchment bg-ivory px-3 py-1 text-xs text-forest/80; }
+  .arch { @apply rounded-t-full rounded-b-2xl; }
+  .serif-body { @apply font-serif text-xl leading-relaxed sm:text-[1.4rem] sm:leading-[1.7]; }
+}
+
+/* One orchestrated moment: the hero settles into place on first load */
+@keyframes settle {
+  from { opacity: 0; transform: translateY(14px); }
+  to { opacity: 1; transform: none; }
+}
+.settle { animation: settle .8s cubic-bezier(.2,.7,.2,1) both; }
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  .settle { animation: none; }
+  * { transition-duration: 0.01ms !important; }
+}

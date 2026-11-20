@@ -1,0 +1,16 @@
+{
+  "name": "ink-and-iris",
+  "version": "1.0.0",
+  "description": "Ink & Iris — A Digital Literary Universe for Author Ms. Jaya Roy Chowdhury",
+  "private": true,
+  "scripts": {
+    "install:all": "npm install && npm --prefix server install && npm --prefix client install",
+    "dev": "concurrently \"npm --prefix server run dev\" \"npm --prefix client run dev\"",
+    "seed": "npm --prefix server run seed",
+    "build": "npm --prefix server run build && npm --prefix client run build",
+    "start": "npm --prefix server start"
+  },
+  "devDependencies": {
+    "concurrently": "^9.1.2"
+  }
+}

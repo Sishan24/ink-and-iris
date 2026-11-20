@@ -4,35 +4,43 @@
 
 @layer base {
   body {
-    background-color: #F4EFE5;
-    color: #302C2A;
+    background-color: #FFF8F0;
+    background-image: theme('backgroundImage.grad-page');
+    background-attachment: fixed;
+    color: #2B2A4C;
     font-family: 'DM Sans', sans-serif;
   }
 
   h1, h2, h3, h4, h5, h6 {
     font-family: 'Cormorant Garamond', serif;
-    color: #302C2A;
+    color: #2B2A4C;
+  }
+
+  ::selection {
+    background: #D0BFFF;
+    color: #2B2A4C;
   }
 }
 
-/* Custom literary touches */
+/* ===== Bright literary touches ===== */
+
 .parchment-border {
-  border: 1px solid rgba(180, 154, 104, 0.4);
+  border: 1px solid rgba(250, 176, 5, 0.45);
 }
 
 .deckled-shadow {
-  box-shadow: 0 4px 20px -2px rgba(48, 44, 42, 0.06), 0 2px 6px -1px rgba(99, 47, 61, 0.04);
+  box-shadow: 0 4px 20px -2px rgba(112, 72, 232, 0.12), 0 2px 6px -1px rgba(214, 51, 108, 0.10);
 }
 
 .paper-card {
-  background-color: #FAF7F2;
-  border: 1px solid rgba(180, 154, 104, 0.35);
-  box-shadow: 0 4px 15px -3px rgba(38, 61, 53, 0.05);
+  background-color: #FFFDF9;
+  border: 1px solid rgba(112, 72, 232, 0.15);
+  box-shadow: 0 6px 22px -4px rgba(112, 72, 232, 0.14);
 }
 
 .brass-divider {
-  height: 1px;
-  background: linear-gradient(90deg, transparent 0%, #B49A68 50%, transparent 100%);
+  height: 2px;
+  background: linear-gradient(90deg, transparent 0%, #FAB005 25%, #D6336C 50%, #7048E8 75%, transparent 100%);
 }
 
 .drop-cap:first-letter {
@@ -43,6 +51,29 @@
   padding-top: 4px;
   padding-right: 8px;
   padding-bottom: 4px;
-  color: #632F3D;
+  color: #D6336C;
   font-weight: 700;
+}
+
+/* ===== Gradient helpers ===== */
+
+.text-gradient {
+  background-image: linear-gradient(135deg, #7048E8, #D6336C, #FAB005);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.btn-gradient {
+  background-image: linear-gradient(135deg, #7048E8 0%, #D6336C 55%, #FAB005 100%);
+  background-size: 200% 200%;
+  color: #ffffff;
+  box-shadow: 0 10px 30px -10px rgba(112, 72, 232, 0.5);
+  transition: transform 0.2s ease, box-shadow 0.2s ease, background-position 0.4s ease;
+}
+
+.btn-gradient:hover {
+  background-position: 100% 50%;
+  transform: translateY(-2px);
+  box-shadow: 0 14px 34px -10px rgba(214, 51, 108, 0.55);
 }
